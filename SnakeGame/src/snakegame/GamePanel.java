@@ -1,41 +1,23 @@
-package snakegame;
+    package snakegame;
+    import java.awt.*;
+    import java.awt.event.*;
+    import javax.swing.*;
+    import java.util.Random;
 
-// import java.awt.Graphics;
-// import java.awt.Dimension;
-// import java.awt.Color;
+    public class GamePanel extends JPanel implements ActionListener{
 
-// import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
-// import java.awt.event.KeyAdapter;
-// import java.awt.event.KeyEvent;
-
-// import javax.crypto.KeyAgreement;
-// import javax.swing.JPanel;
-// import javax.swing.Timer;
-
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.Random;
-
-
-import java.util.Random;
-
-public class GamePanel extends JPanel{
-    static final int SCREEN_WIDTH = 600;
-    static final int SCREEN_HEIGHT = 600;
-    static final int UNIT_SIZE = 25; //how big we want the objects in this game
-    static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT)/UNIT_SIZE; //how many objects we can have in our screen
-    static final int DELAY = 75; //defines speed of the game
-    //cordinates
+    static final int SCREEN_WIDTH = 1300;
+    static final int SCREEN_HEIGHT = 750;
+    static final int UNIT_SIZE = 50;
+    static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
+    static final int DELAY = 175;
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
-    int bodyParts = 6; //snake length
-    int applesEaten; //number of apples eaten by the snake
-    //apple location
+    int bodyParts = 6;
+    int applesEaten;
     int appleX;
     int appleY;
-    char direction = 'R'; //to where the snake is facing (starts facing right)
+    char direction = 'R';
     boolean running = false;
     Timer timer;
     Random random;
@@ -46,51 +28,51 @@ public class GamePanel extends JPanel{
         this.setBackground(Color.black);
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAdapter());
-        this.startGame();
+        startGame();
     }
-    public void startGame(){
-        newApple(); //spawns a new apple
-        running = true; //starts running the game
-        timer = new Timer(DELAY, this); //sets timer
+    public void startGame() {
+        newApple();
+        running = true;
+        timer = new Timer(DELAY,this);
         timer.start();
     }
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.draw(g);
+        draw(g);
     }
-    public void draw(Graphics g){
-
-        //drawing lines to make a grid (makes seeing easier)
-        for(int i=0; i<SCREEN_HEIGHT/UNIT_SIZE;i++){
-            g.drawLine(i*UNIT_SIZE,0,i*UNIT_SIZE,SCREEN_HEIGHT);
+    public void draw(Graphics g) {
+        
+        //drawing some lines to make a grid
+        //it will ease our work
+        for(int i=0; i<SCREEN_HEIGHT; i++){
+            g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+            g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
         }
     }
     public void newApple(){
-
     }
-    
     public void move(){
-
-    }
-    public void checkApple(){
-
-    }
-    public void checkCollision(){
-
-    }
-    public void gameOver(Graphics g){
-
-    }
-    // @Override
-    // public void actionPerformed(ActionEvent e){
         
-    // }
+        
+    }
+    public void checkApple() {
+
+    }
+    public void checkCollisions() {
+        
+    }
+    public void gameOver(Graphics g) {
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+    }
 
     public class MyKeyAdapter extends KeyAdapter{
         @Override
-        public void keyPressed(KeyEvent e){
-
+        public void keyPressed(KeyEvent e) {
+            
+            
         }
-
     }
 }
