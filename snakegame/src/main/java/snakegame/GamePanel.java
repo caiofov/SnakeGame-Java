@@ -41,7 +41,8 @@
         draw(g);
     }
     public void draw(Graphics g) {
-        
+        g.setColor(Color.red);
+        g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
         //drawing some lines to make a grid
         //it will ease our work
         for(int i=0; i<SCREEN_HEIGHT; i++){
@@ -50,9 +51,33 @@
         }
     }
     public void newApple(){
+    	appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
+    	appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+
     }
+    
     public void move(){
-        
+        for(int i = bodyParts; i>0; i--) { //position of the body parts in the back are now the same of the body parts in the front
+        	x[i] = x[i-1]; //x coordinate
+        	y[i] = y[i-1]; //y coordinate
+        }
+        switch(direction) {
+	        case 'U': //up
+	        	y[0] = y[0] - UNIT_SIZE;
+	        	break;
+	        
+		    case 'D': //down
+		    	y[0] = y[0] + UNIT_SIZE;
+		    	break;
+		    
+		    case 'L': //left
+		    	x[0] = x[0] - UNIT_SIZE;
+		    	break;
+		    
+		    case 'R': //right
+		    	x[0] = x[0] + UNIT_SIZE;
+		    	break;
+	    }
         
     }
     public void checkApple() {
@@ -63,9 +88,9 @@
     }
     public void gameOver(Graphics g) {
     }
-    @Override
+    //@Override
     public void actionPerformed(ActionEvent e) {
-        
+        System.out.println("pass");
     }
 
     public class MyKeyAdapter extends KeyAdapter{

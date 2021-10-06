@@ -1,6 +1,0 @@
-{
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "maven.view": "flat",
-    "editor.fontSize": 16
-}
