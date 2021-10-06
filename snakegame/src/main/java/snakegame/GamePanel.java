@@ -43,12 +43,29 @@
     public void draw(Graphics g) {
         g.setColor(Color.red);
         g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
+        
+        //drawing snake body parts
+        for (int i =0 ; i< bodyParts; i++) {
+        	if (i==0) { //snake head
+        		g.setColor(Color.green);
+        		g.fillRect(x[i],y[i], UNIT_SIZE, UNIT_SIZE);
+        		
+        	}
+        	else {
+        		g.setColor(new Color(45,180,0));
+        		g.fillRect(x[i],y[i], UNIT_SIZE, UNIT_SIZE);
+        	}
+        }
+        
+        
         //drawing some lines to make a grid
         //it will ease our work
         for(int i=0; i<SCREEN_HEIGHT; i++){
             g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
             g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
         }
+        
+    
     }
     public void newApple(){
     	appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
@@ -84,13 +101,40 @@
 
     }
     public void checkCollisions() {
-        
+        //checks if head collides with body
+    	for(int i = bodyParts; i>0;i--) {
+        	if((x[0] == x[i]) && (y[0] == y[i])) { //if the head has the same location of any other body part
+        		running = false; //game over
+        	}
+        }
+    	//checks if head touches the borders
+    	if(x[0] < 0) { //left border
+    		running = false;
+    	}
+    	if(x[0] > SCREEN_WIDTH) { //right border
+    		running = false;
+    	}
+    	if(y[0] < 0) { //top border
+    		running = false;
+    	}
+    	if(y[0] > SCREEN_HEIGHT) { //bottom border
+    		running = false;
+    	}
+    	
+    	if(!running) {
+    		timer.stop(); //stops time
+    	}
     }
     public void gameOver(Graphics g) {
     }
-    //@Override
+    @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("pass");
+        if(running) { //if the game is running
+        	move();
+        	checkApple();
+        	checkCollisions();
+        }
+        repaint();
     }
 
     public class MyKeyAdapter extends KeyAdapter{
