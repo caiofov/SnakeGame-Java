@@ -55,6 +55,7 @@
             	}
             	else {
             		g.setColor(new Color(45,180,0)); //sets body color
+            		g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255))); //colorful snake
             		g.fillRect(x[i],y[i], UNIT_SIZE, UNIT_SIZE); //draws snake body parts
             	}
             }
@@ -69,11 +70,11 @@
         	
         	//drawing some lines to make a grid
             //it will ease our work
-        	g.setColor(Color.gray);
-            for(int i=0; i<SCREEN_HEIGHT; i++){
-                g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-                g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
-            }
+//        	g.setColor(Color.gray);
+//            for(int i=0; i<SCREEN_HEIGHT; i++){
+//                g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+//                g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH,i*UNIT_SIZE);
+//            }
     	}
     	
     	else { //if the game is not running
